@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "order_providers",
+  "info": {
+    "name": "Order_provider"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "street": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string",
+      "required": true
+    },
+    "phone": {
+      "type": "string"
+    },
+    "facility_name": {
+      "type": "string",
+      "required": true
+    },
+    "test_date": {
+      "type": "date"
+    },
+    "zip_code": {
+      "type": "integer"
+    }
+  }
+}

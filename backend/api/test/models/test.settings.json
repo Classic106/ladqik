@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tests",
+  "info": {
+    "name": "Test",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "performed_description": {
+      "type": "text"
+    },
+    "result_code": {
+      "type": "integer"
+    },
+    "result_description": {
+      "type": "text"
+    },
+    "result_number": {
+      "type": "integer"
+    },
+    "date": {
+      "type": "date"
+    },
+    "date_released": {
+      "type": "date"
+    },
+    "performed_code": {
+      "type": "integer"
+    }
+  }
+}

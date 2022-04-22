@@ -1,0 +1,49 @@
+{
+  "kind": "collectionType",
+  "collectionName": "patient_cards",
+  "info": {
+    "name": "Patient_card",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "comments": {
+      "type": "text"
+    },
+    "first_test": {
+      "type": "string"
+    },
+    "employed_in_healthcare": {
+      "type": "string"
+    },
+    "Illness_onset_date": {
+      "type": "date"
+    },
+    "hospitalized": {
+      "type": "boolean"
+    },
+    "icu": {
+      "type": "boolean"
+    },
+    "resident_congregate_setting": {
+      "type": "string"
+    },
+    "pregnant": {
+      "type": "boolean"
+    },
+    "patient_died": {
+      "type": "boolean"
+    },
+    "patient_death_date": {
+      "type": "date"
+    },
+    "symptomatic_for_disease": {
+      "type": "json"
+    }
+  }
+}

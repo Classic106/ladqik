@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "specimen",
+  "info": {
+    "name": "Specimen"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "collection_date": {
+      "type": "date",
+      "required": true
+    },
+    "recieved_date": {
+      "type": "date"
+    },
+    "type_description": {
+      "type": "text",
+      "required": true
+    },
+    "type_code": {
+      "type": "integer",
+      "required": true
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "instruments",
+  "info": {
+    "name": "Instrument"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "model_name": {
+      "type": "string"
+    },
+    "model_id": {
+      "type": "string"
+    },
+    "instance_id": {
+      "type": "string"
+    }
+  }
+}

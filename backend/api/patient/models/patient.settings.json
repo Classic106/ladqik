@@ -1,0 +1,83 @@
+{
+  "kind": "collectionType",
+  "collectionName": "patients",
+  "info": {
+    "name": "Patient",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "last_name": {
+      "type": "string",
+      "required": true
+    },
+    "first_name": {
+      "type": "string",
+      "required": true
+    },
+    "middle_name": {
+      "type": "string"
+    },
+    "race": {
+      "type": "string"
+    },
+    "dob": {
+      "type": "date"
+    },
+    "language": {
+      "type": "string"
+    },
+    "street1": {
+      "type": "string",
+      "required": true
+    },
+    "street2": {
+      "type": "string",
+      "required": true
+    },
+    "city": {
+      "type": "string",
+      "required": true
+    },
+    "state": {
+      "type": "string",
+      "required": true
+    },
+    "home_phone": {
+      "type": "string"
+    },
+    "cell_phone": {
+      "type": "string"
+    },
+    "zip_code": {
+      "type": "integer"
+    },
+    "country": {
+      "type": "string"
+    },
+    "gender": {
+      "type": "enumeration",
+      "enum": [
+        "Male",
+        "Female"
+      ]
+    },
+    "ethnicity": {
+      "type": "enumeration",
+      "enum": [
+        "Hispanic_or_Latino",
+        "American_Indian_or_Alaska_Native",
+        "Asian",
+        "Black_or_African_American",
+        "Native_Hawaiian_or_Other_Pacific_Islander",
+        "White",
+        "Other"
+      ]
+    }
+  }
+}

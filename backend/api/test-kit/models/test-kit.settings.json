@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "test_kits",
+  "info": {
+    "name": "Test_kit"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "eua_id": {
+      "type": "string",
+      "required": true
+    },
+    "model_name": {
+      "type": "string"
+    },
+    "model_id": {
+      "type": "string"
+    },
+    "instance_id": {
+      "type": "string"
+    }
+  }
+}

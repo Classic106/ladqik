@@ -1,0 +1,387 @@
+<template>
+  <div class="row header d-flex position-relative">
+    <div class="col-2">
+      <h4 class="logo text-nowrap m-0 p-0">Nobel BioLabs</h4>
+    </div>
+    <div class="col-8 col-md-7 w-100 menu p-0 w-lg-50 position-absolute">
+      <ul
+        class="align-items-center"
+        ref="menu"
+        :class="
+          !isMobile
+            ? 'nav justify-content-end d-lg-flex'
+            : isMobileMenuOpen
+            ? 'show'
+            : 'd-none'
+        "
+      >
+        <li>
+          <NuxtLink to="/" class="nav-link active d-flex">Home</NuxtLink>
+        </li>
+        <li
+          v-for="item in menu"
+          :key="item.link"
+          v-on:click.stop="isMobile && toggleActive(item)"
+          class="item-menu d-flex flex-column"
+        >
+          <NuxtLink
+            :to="item.link || ''"
+            :disabled="item.link ? '' : 'disabled'"
+            class="
+              nav-link
+              d-flex
+              w-100
+              justify-content-between
+              align-items-center
+            "
+            >{{ item.name }}
+            <Icon
+              v-if="isMobile && !item.link"
+              :icon="item.isActive ? 'angle-up' : 'angle-down'"
+            />
+          </NuxtLink>
+          <ul
+            v-if="item.subMenu"
+            class="sub-links d-none position-absolute px-0 py-3 rounded"
+            :class="isMobile && `mobile ${item.isActive ? 'active' : ''}`"
+          >
+            <li v-for="link in item.subMenu" :key="link.name">
+              <NuxtLink
+                class="nav-link d-flex px-4"
+                v-on:click.native="linkTo(link)"
+                :to="link.link || '#'"
+                event=""
+                >{{ link.name }}</NuxtLink
+              >
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="col d-flex justify-content-end p-0 mr-3">
+      <nuxt-link
+        no-prefetch
+        to="/booking"
+        class="d-none d-md-flex text-decoration-none"
+      >
+        <button type="button" class="btn yellow-gradient slim p-2 rounded">
+          Schedule Appointment
+        </button>
+      </nuxt-link>
+      <div
+        id="nav-icon3"
+        ref="menuButton"
+        class="ml-2 d-lg-none"
+        v-bind:class="{ open: isMobileMenuOpen }"
+        v-on:click="isMobileMenuOpen = !isMobileMenuOpen"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import Icon from "@/components/Icon";
+
+export default {
+  name: "app",
+  comments: { Icon },
+  watch: {
+    isMobile() {
+      if (!this.isMobile) {
+        this.menu = [...this.menu].map((item) => {
+          item.isActive = false;
+          return item;
+        });
+      }
+    },
+  },
+  methods: {
+    myEventHandler(e) {
+      if (e.target.innerWidth > 992) {
+        this.isMobile = false;
+      } else {
+        this.isMobile = true;
+      }
+    },
+    closeOutsideMenu(e) {
+      let { menu, menuButton } = this.$refs;
+      let { target } = e;
+
+      if (!menu || !menuButton || !target) {
+        return;
+      }
+      if (
+        menu !== target &&
+        !menu.contains(target) &&
+        menuButton !== target &&
+        !menuButton.contains(target)
+      ) {
+        this.isMobileMenuOpen = false;
+      }
+    },
+    toggleActive(menuItem) {
+      this.menu = this.menu.map((item) => {
+        if (item.name === menuItem.name) {
+          item.isActive = !item.isActive;
+          return item;
+        }
+        item.isActive = false;
+        return item;
+      });
+    },
+    linkTo(link) {
+      if (link.scrollId) {
+        this.scroll(link.scrollId);
+        return;
+      }
+      if (link.link.includes("https://")) {
+        window.location.href = link.link;
+        return;
+      }
+      this.$router.push({ path: link.link });
+    },
+    scroll(id) {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({
+          behavior: "smooth",
+        });
+      }
+    },
+  },
+  data: () => ({
+    isMobileMenuOpen: false,
+    isMobile: true,
+    menu: [
+      {
+        name: "Testing Services",
+        isActive: false,
+        subMenu: [
+          {
+            name: "Covid-19",
+            link: "/booking",
+          },
+          {
+            name: "Fit To Fly",
+            link: "/booking",
+          },
+          {
+            name: "Minor illnesses",
+            link: "/booking",
+          },
+          {
+            name: "STD testing",
+            link: "/booking",
+          },
+          {
+            name: "Drug & Alcohol",
+            link: "/booking",
+          },
+          {
+            name: "Test Pricing",
+            link: "/booking",
+          },
+        ],
+      },
+      {
+        name: "Lab Services",
+        isActive: false,
+        subMenu: [
+          {
+            name: "Molecular Diagnostics",
+            link: "https://poseidondiagnostics.com/",
+          },
+          {
+            name: "Covid Lab B2B",
+            link: "https://poseidondiagnostics.com/",
+          },
+          {
+            name: "Corporate",
+            link: "https://poseidondiagnostics.com/",
+          },
+        ],
+      },
+      {
+        name: "Test Pricing",
+        link: "/booking",
+      },
+      {
+        name: "Contact",
+        isActive: false,
+        subMenu: [
+          {
+            name: "Locations",
+            link: "/booking",
+          },
+          {
+            name: "Email Us",
+            scrollId: "contact",
+          },
+          {
+            name: "Helpdesk",
+            link: "https://fasttestnow.crisp.help/en/category/faq-y2ouoi/",
+          },
+          {
+            name: "WhatsApp",
+            link: "https://api.whatsapp.com/send/?phone=%2B18338308383&text&app_absent=0",
+          },
+          {
+            name: "(833) 830-8383",
+            link: "tel:830-830-8383",
+          },
+        ],
+      },
+    ],
+  }),
+  mounted() {
+    this.myEventHandler({ target: window });
+    window.addEventListener("resize", this.myEventHandler);
+    document.addEventListener("click", this.closeOutsideMenu);
+  },
+  destroyed() {
+    window.removeEventListener("resize", this.myEventHandler);
+    document.addEventListener("click", this.closeOutsideMenu);
+  },
+};
+</script>
+
+<style scoped>
+@media (hover: hover) {
+  .nav-link:hover {
+    color: rgba(0, 0, 0, 0.6) !important;
+  }
+}
+
+@media (min-width: 992px) {
+  .header {
+    position: static !important;
+  }
+  .menu {
+    position: static !important;
+    min-width: 0 !important;
+    top: 0 !important;
+  }
+  .item-menu:hover > .sub-links {
+    display: flex !important;
+    flex-direction: column;
+    top: 60px;
+  }
+}
+
+.icon {
+  fill: #000;
+}
+
+.menu {
+  bottom: 0;
+  min-width: 100%;
+  z-index: 1;
+  top: 60px;
+}
+
+ul,
+a {
+  list-style-type: none;
+}
+
+.sub-links.active {
+  display: flex !important;
+  flex-direction: column;
+}
+
+.sub-links {
+  background-color: #f8f8f8;
+}
+
+.sub-links.mobile {
+  position: relative !important;
+}
+
+.show {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  background-color: #f8f8f8;
+  overflow: hidden;
+  box-shadow: 0 20px 15px 0 rgb(23 23 23 / 5%);
+  max-height: calc(100vh - 65px);
+  padding: 15px 15px 25px;
+}
+
+.show a {
+  font-size: 14px;
+  padding: 9px 15px;
+  margin: 0;
+}
+
+.nav-link {
+  color: #232323;
+  font-weight: 500;
+}
+
+#nav-icon3 {
+  font-size: 24px;
+  width: 40px;
+  height: 32px;
+  position: relative;
+  transform: rotate(0deg);
+  transition: 0.5s ease-in-out;
+  cursor: pointer;
+}
+
+#nav-icon3 span {
+  background: #232323;
+  height: 2px;
+  width: 22px;
+  content: "";
+  display: block;
+  border-radius: 0;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  transform: rotate(0deg);
+  transition: 0.25s ease-in-out;
+}
+
+#nav-icon3 span:nth-child(1) {
+  top: 8px;
+  width: 14px;
+}
+
+#nav-icon3 span:nth-child(2),
+#nav-icon3 span:nth-child(3) {
+  top: 14px;
+}
+
+#nav-icon3 span:nth-child(4) {
+  top: 20px;
+  width: 14px;
+}
+
+#nav-icon3.open span:nth-child(1) {
+  top: 7px;
+  width: 0%;
+}
+
+#nav-icon3.open span:nth-child(2) {
+  transform: rotate(45deg);
+  top: 14px;
+}
+
+#nav-icon3.open span:nth-child(3) {
+  transform: rotate(-45deg);
+  top: 14px;
+}
+
+#nav-icon3.open span:nth-child(4) {
+  top: 7px;
+  width: 0%;
+}
+</style>
