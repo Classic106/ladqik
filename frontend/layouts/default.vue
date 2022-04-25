@@ -25,6 +25,7 @@ body {
 }
 
 hr {
+  
   margin-top: 1rem;
   margin-bottom: 1rem;
   border: 0;
