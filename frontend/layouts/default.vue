@@ -16,6 +16,7 @@ body {
   line-height: 30px;
   font-weight: 400;
   font-family: roboto, sans-serif;
+  color: #828282;
   padding: 0;
   margin: 0;
   -webkit-font-smoothing: antialiased;
