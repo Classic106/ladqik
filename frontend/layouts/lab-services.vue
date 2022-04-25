@@ -1,26 +1,51 @@
 <template>
   <div class="flex justify-center bg-gray-200">
-    <div class="max-w-screen-lg flex flex-col min-h-screen w-full">
-      <Header />
+    <div
+      v-if="loading"
+      class="loading w-100 d-flex justify-content-center align-items-center"
+    >
+      <Loader />
+    </div>
+    <div v-else class="max-w-screen-lg flex flex-col min-h-screen w-full">
+      <LabServiseHeader />
       <Nuxt class="flex-grow" />
-      <Footer />
+      <LabServiseFooter />
     </div>
   </div>
 </template>
 
 <script>
-import Header from "./../components/Header";
-import Footer from "./../components/Footer";
+import LabServiseHeader from "@/components/LabServiseHeader";
+import LabServiseFooter from "@/components/LabServiseFooter";
+import Buttons from "@/components/Buttons";
+import Loader from "@/components/Loader.vue";
 
 export default {
   components: {
-    Header,
-    Footer,
+    LabServiseHeader,
+    LabServiseFooter,
+    Buttons,
+    Loader,
+  },
+  data: () => ({ loading: true }),
+  mounted() {
+    this.loading = false;
   },
 };
 </script>
 
-<style>
+<style scoped>
+.position-absolute {
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.loading {
+  height: 100vh;
+}
+
 hr {
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -28,24 +53,31 @@ hr {
   width: 100%;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
+
 .w100 {
   width: 100%;
 }
+
 .color-orange {
   color: rgb(249, 141, 56);
 }
+
 .s-15 {
   line-height: 1.8;
 }
+
 .m-bottom {
   margin-bottom: 60px;
 }
+
 .m-bottom-half {
   margin-bottom: 30px;
 }
+
 .m-bottom-qtr {
   margin-bottom: 15px;
 }
+
 .square {
   width: 75px;
   height: 75px;
@@ -63,6 +95,7 @@ hr {
   font-weight: bold;
   margin-bottom: 20px;
 }
+
 .row {
   margin-left: 0;
   margin-right: 0;
@@ -72,12 +105,6 @@ hr {
   padding: 40px 0;
 }
 
-.bg-transparent {
-  background: rgba(0, 0, 0, 0.2) !important;
-  padding: 20px;
-  max-width: 400px;
-  color: #ffffff;
-}
 .logo {
   padding-left: 20px;
 }
@@ -86,12 +113,7 @@ hr {
   background-color: #f8f8f8;
   align-items: center;
 }
-.row.slider {
-  height: 80vh;
-  background: #f8f8f8 url(../static/images/header-pic.jpg);
-  background-size: cover;
-  align-items: center;
-}
+
 a.nav-link {
   color: #2d384a;
 }
@@ -122,6 +144,37 @@ a.nav-link {
   max-width: 300px;
   height: 50px;
   font-size: 14px !important;
+}
+
+h6 {
+  font-size: 1.8rem;
+  line-height: 2.5rem;
+}
+
+h5 {
+  font-size: 2.3rem;
+  line-height: 3rem;
+}
+h3 {
+  font-size: 3.4rem;
+  line-height: 3.9rem;
+}
+
+h2 {
+  font-size: 3.9rem;
+}
+
+.text-gradient-magenta-orange-2 {
+  background: linear-gradient(
+    to right,
+    #ec606c,
+    #ee6362,
+    #ee6757,
+    #ed6c4d,
+    #eb7242
+  );
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 </style>
 

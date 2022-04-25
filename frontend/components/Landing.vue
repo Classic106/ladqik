@@ -1,10 +1,18 @@
 <template>
   <div>
     <div class="row slider">
-      <div class="col-7"></div>
-      <div class="col-5">
-        <div class="slider-content d-flex flex-column bg-transparent">
-          <h3>NO LINES, NO HASSLES, FAST RESULTS.</h3>
+      <div class="col d-flex bg-transparent w-100 h-100 py-1 p-md-5">
+        <div
+          class="
+            slider-content
+            d-flex
+            flex-column
+            col col-md-12 col-xl-5
+            p-0 p-md-5
+            m-5
+          "
+        >
+          <h6>NO LINES, NO HASSLES, FAST RESULTS.</h6>
           <h2>LAB TESTS DONE EASY.</h2>
           <p class="d-flex align-items-center">
             <Icon icon="doctor" class="mr-2" />General Health Testing.
@@ -62,11 +70,11 @@
     </div>
 
     <div class="container m-bottom">
-      <div class="row">
-        <div class="col-7 d-flex">
+      <div class="row flex-column flex-md-row align-items-center">
+        <div class="col col-md-7 d-flex h-max mb-5 m-md-0">
           <img class="w100" src="../static/images/pic-1.jpg" />
         </div>
-        <div class="col-5 d-flex flex-column">
+        <div class="col col-md-5 d-flex flex-column">
           <h6 class="color-orange m-bottom-half">
             FAST SERVICE, ACCURATE RESULTS.
           </h6>
@@ -99,8 +107,8 @@
     </div>
 
     <div class="container m-bottom">
-      <div class="row">
-        <div class="col-7 d-flex flex-column">
+      <div class="row flex-column flex-md-row align-items-center">
+        <div class="col col-md-7 d-flex flex-column">
           <h6 class="color-orange m-bottom-half">TESTING = INFORMATION</h6>
           <h4 class="m-bottom-half">
             We believe information is only as strong as our answers. We never
@@ -115,7 +123,7 @@
             </button>
           </nuxt-link>
         </div>
-        <div class="col-5 d-flex">
+        <div class="col col-md-5 d-flex h-max mt-5 m-mt-0">
           <img class="w100" src="../static/images/pic-2.jpg" />
         </div>
       </div>
@@ -189,7 +197,7 @@
 </template>
 
 <script>
-import Icon from "@/components/Icon";
+import Icon from "@/components/icons";
 
 export default {
   comments: { Icon },
@@ -227,6 +235,12 @@ export default {
 <style scoped>
 .icon {
   fill: #fff;
+}
+
+.row.slider {
+  background: #f8f8f8 url(../static/images/header-pic.jpg);
+  background-size: cover;
+  align-items: center;
 }
 
 .slider-content > p {

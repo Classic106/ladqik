@@ -19,7 +19,6 @@ import ScheduleAppointmentStepOne from "@/components/scheduleAppointmentStepOne.
 import ScheduleAppointmentStepTwo from "@/components/scheduleAppointmentStepTwo.vue";
 
 export default {
-  layout: "empty",
   module: {
     ScheduleAppointmentStepOne,
     ScheduleAppointmentStepTwo,

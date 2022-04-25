@@ -45,10 +45,10 @@
 </template>
 
 <script>
-import Icon from "@/components/Icon";
+import Icon from "@/components/icons";
 
 export default {
-  layout: "headerFooter",
+  layout: "booking",
   components: { Icon },
   async fetch({ store }) {
     if (store.getters["locations/locations"].length === 0) {

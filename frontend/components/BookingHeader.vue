@@ -85,7 +85,7 @@
 </template>
 
 <script>
-import Icon from "@/components/Icon";
+import Icon from "@/components/icons";
 
 export default {
   name: "app",
@@ -102,11 +102,7 @@ export default {
   },
   methods: {
     myEventHandler(e) {
-      if (e.target.innerWidth > 992) {
-        this.isMobile = false;
-      } else {
-        this.isMobile = true;
-      }
+      this.isMobile = !(e.target.innerWidth > 992);
     },
     closeOutsideMenu(e) {
       let { menu, menuButton } = this.$refs;
@@ -125,7 +121,7 @@ export default {
       }
     },
     toggleActive(menuItem) {
-      this.menu = this.menu.map((item) => {
+      this.menu = [...this.menu].map((item) => {
         if (item.name === menuItem.name) {
           item.isActive = !item.isActive;
           return item;
@@ -137,10 +133,6 @@ export default {
     linkTo(link) {
       if (link.scrollId) {
         this.scroll(link.scrollId);
-        return;
-      }
-      if (link.link.includes("https://")) {
-        window.location.href = link.link;
         return;
       }
       this.$router.push({ path: link.link });
@@ -194,15 +186,15 @@ export default {
         subMenu: [
           {
             name: "Molecular Diagnostics",
-            link: "https://poseidondiagnostics.com/",
+            link: "/lab-servises",
           },
           {
             name: "Covid Lab B2B",
-            link: "https://poseidondiagnostics.com/",
+            link: "/lab-servises",
           },
           {
             name: "Corporate",
-            link: "https://poseidondiagnostics.com/",
+            link: "/lab-servises",
           },
         ],
       },
@@ -296,9 +288,11 @@ a {
 
 .sub-links {
   background-color: #f8f8f8;
+  box-shadow: 0 0 35px rgb(0 0 0 / 10%);
 }
 
 .sub-links.mobile {
+  box-shadow: 0 0 35px rgb(0 0 0 / 10%);
   position: relative !important;
 }
 
@@ -322,66 +316,5 @@ a {
 .nav-link {
   color: #232323;
   font-weight: 500;
-}
-
-#nav-icon3 {
-  font-size: 24px;
-  width: 40px;
-  height: 32px;
-  position: relative;
-  transform: rotate(0deg);
-  transition: 0.5s ease-in-out;
-  cursor: pointer;
-}
-
-#nav-icon3 span {
-  background: #232323;
-  height: 2px;
-  width: 22px;
-  content: "";
-  display: block;
-  border-radius: 0;
-  position: absolute;
-  left: 0;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
-  transform: rotate(0deg);
-  transition: 0.25s ease-in-out;
-}
-
-#nav-icon3 span:nth-child(1) {
-  top: 8px;
-  width: 14px;
-}
-
-#nav-icon3 span:nth-child(2),
-#nav-icon3 span:nth-child(3) {
-  top: 14px;
-}
-
-#nav-icon3 span:nth-child(4) {
-  top: 20px;
-  width: 14px;
-}
-
-#nav-icon3.open span:nth-child(1) {
-  top: 7px;
-  width: 0%;
-}
-
-#nav-icon3.open span:nth-child(2) {
-  transform: rotate(45deg);
-  top: 14px;
-}
-
-#nav-icon3.open span:nth-child(3) {
-  transform: rotate(-45deg);
-  top: 14px;
-}
-
-#nav-icon3.open span:nth-child(4) {
-  top: 7px;
-  width: 0%;
 }
 </style>

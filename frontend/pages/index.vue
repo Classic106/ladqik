@@ -1,28 +1,16 @@
 <template>
+  <Landing />
 </template>
 
 <script>
-/*<Products :products="products" :error="error" :storeUrl="storeUrl" />*/
-import Products from "~/components/Products.vue"
+import Landing from "@/components/Landing";
 
 export default {
-  data() {
-    return {
-      products: [],
-      storeUrl: process.env.storeUrl,
-      error: null
-    }
-  },
-  async mounted() {
-    try {
-      this.products = await this.$strapi.$products.find()
-    } catch (error) {
-      this.error = error
-    }
-  },
-  components: {
-    Products
-  }
-}
+  layout: "booking",
+  components: { Landing },
+};
 </script>
+
+<style>
+</style>
 
