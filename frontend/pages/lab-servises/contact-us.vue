@@ -31,9 +31,8 @@
             Schedule a 15 minute intro call with us. We'll answer all your
             questions.
           </p>
-          <nuxt-link
-            no-prefetch
-            to="/booking"
+          <a
+            href="/booking"
             class="
               link
               text-uppercase
@@ -43,7 +42,7 @@
             "
           >
             Schedule a call
-          </nuxt-link>
+          </a>
         </div>
       </div>
     </section>
@@ -145,11 +144,14 @@ span {
 
 p {
   font-weight: 400;
-  color: #828282;
 }
 
 .icon {
   fill: url(#magenta-orange-gradient);
+}
+
+.big-section {
+  color: #828282;
 }
 
 .page-title-separator-line {
