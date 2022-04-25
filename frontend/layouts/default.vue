@@ -208,7 +208,7 @@ a.nav-link {
 }
 
 .h-max {
-  height: max-content;
+  height: max-content !important;
 }
 
 h6 {

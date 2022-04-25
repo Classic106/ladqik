@@ -200,7 +200,7 @@
 import Icon from "@/components/icons";
 
 export default {
-  comments: { Icon },
+  components: { Icon },
   data: () => ({
     items: [
       {
@@ -275,4 +275,7 @@ span {
   color: #374162;
 }
 
+p {
+  color: #828282;
+}
 </style>
