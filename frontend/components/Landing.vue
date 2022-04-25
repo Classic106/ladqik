@@ -275,7 +275,4 @@ span {
   color: #374162;
 }
 
-p {
-  color: #828282;
-}
 </style>

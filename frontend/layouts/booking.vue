@@ -9,7 +9,7 @@
     <div v-else class="max-w-screen-lg flex flex-col min-h-screen w-full">
       <BookingHeader />
       <Nuxt class="flex-grow" />
-      <BookingHeader />
+      <BookingFooter />
     </div>
   </div>
 </template>

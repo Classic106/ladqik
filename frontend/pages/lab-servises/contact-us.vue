@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section class="">
+    <section>
       <div class="p-5 row bg-gradient-light-orange-light-pink align-items-end">
         <div
           class="
@@ -129,7 +129,6 @@ h6 {
 }
 
 a {
-  color: #828282;
   text-decoration: none;
 }
 
@@ -139,7 +138,6 @@ a {
 
 span {
   width: 80%;
-  color: #828282;
 }
 
 p {
@@ -148,10 +146,6 @@ p {
 
 .icon {
   fill: url(#magenta-orange-gradient);
-}
-
-.big-section {
-  color: #828282;
 }
 
 .page-title-separator-line {

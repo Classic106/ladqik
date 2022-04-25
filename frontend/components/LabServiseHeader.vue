@@ -148,12 +148,6 @@ img {
   height: 40px;
 }
 
-
-
-.item-description {
-  color: #828282;
-}
-
 .icon.icon-head {
   display: block;
   border: 2px solid #0038e3;
