@@ -19,7 +19,7 @@
           <NuxtLink
             to="/"
             class="nav-link active d-flex h-100 align-items-center"
-            >Home</NuxtLink
+            >Home</NuxtLink 
           >
         </li>
         <li
