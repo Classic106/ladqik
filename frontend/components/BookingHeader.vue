@@ -3,9 +3,9 @@
     <div class="col-2">
       <h4 class="logo text-nowrap m-0 p-0">Nobel BioLabs</h4>
     </div>
-    <div class="col-8 col-md-7 w-100 menu p-0 w-lg-50 position-absolute">
+    <div class="col-8 col-md-7 w-100 h-100 menu p-0 w-lg-50 position-absolute">
       <ul
-        class="align-items-center"
+        class="align-items-center h-100"
         ref="menu"
         :class="
           !isMobile
@@ -15,14 +15,18 @@
             : 'd-none'
         "
       >
-        <li>
-          <NuxtLink to="/" class="nav-link active d-flex">Home</NuxtLink>
+        <li class="h-100">
+          <NuxtLink
+            to="/"
+            class="nav-link active d-flex h-100 align-items-center"
+            >Home</NuxtLink
+          >
         </li>
         <li
           v-for="item in menu"
           :key="item.link"
           v-on:click.stop="isMobile && toggleActive(item)"
-          class="item-menu d-flex flex-column"
+          class="item-menu d-flex flex-column h-100"
         >
           <NuxtLink
             :to="item.link || ''"
@@ -31,6 +35,7 @@
               nav-link
               d-flex
               w-100
+              h-100
               justify-content-between
               align-items-center
             "
