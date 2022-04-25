@@ -11,7 +11,7 @@
           !isMobile
             ? 'nav justify-content-end d-lg-flex'
             : isMobileMenuOpen
-            ? 'show'
+            ? 'show h-max'
             : 'd-none'
         "
       >
@@ -19,7 +19,7 @@
           <NuxtLink
             to="/"
             class="nav-link active d-flex h-100 align-items-center"
-            >Home</NuxtLink 
+            >Home</NuxtLink
           >
         </li>
         <li
@@ -94,7 +94,7 @@ import Icon from "@/components/icons";
 
 export default {
   name: "app",
-  comments: { Icon },
+  components: { Icon },
   watch: {
     isMobile() {
       if (!this.isMobile) {

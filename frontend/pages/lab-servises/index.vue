@@ -101,7 +101,7 @@
             travel. Reports include all required information
             <strong>including QR code's</strong>
           </p>
-          <NuxtLink
+          <nuxt-link
             to="#"
             class="
               nav-link
@@ -112,7 +112,7 @@
               contact-btn
             "
             >Contact us
-          </NuxtLink>
+          </nuxt-link>
         </div>
       </div>
     </section>
