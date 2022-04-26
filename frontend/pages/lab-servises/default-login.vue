@@ -19,23 +19,24 @@
     >
       <div class="col d-flex flex-column justify-content-center mb-5">
         <h1>ELIS - Login</h1>
-        <form v-if="formIndex === 0">
+        <form v-if="formIndex === 0" v-on:submit.prevent="submitLogin">
           <p>Enter your username and password.</p>
           <div class="form-group">
             <input
-              type="userName"
+              type="text"
               class="form-control"
-              id="exampleInputEmail1"
-              aria-describedby="emailHelp"
+              name="userName"
               placeholder="User name"
+              required
             />
           </div>
           <div class="form-group">
             <input
               type="password"
               class="form-control"
-              id="exampleInputPassword1"
+              name="password"
               placeholder="Password"
+              required
             />
           </div>
           <div class="d-flex justify-content-end align-items-center">
@@ -46,7 +47,7 @@
           </div>
         </form>
 
-        <form v-if="formIndex === 1">
+        <form v-if="formIndex === 1" v-on:submit.prevent="submitForgotPassword">
           <h3 class="font-green">Forgot Password ?</h3>
           <p>
             Enter your username and e-mail address below to reset your password.
@@ -55,19 +56,20 @@
           </p>
           <div class="form-group">
             <input
-              type="userName"
+              type="text"
               class="form-control"
-              id="exampleInputEmail1"
-              aria-describedby="emailHelp"
+              name="userName"
               placeholder="User name"
+              required
             />
           </div>
           <div class="form-group">
             <input
               type="email"
               class="form-control"
-              id="exampleInputPassword1"
+              name="email"
               placeholder="Email"
+              required
             />
           </div>
           <div class="d-flex justify-content-between align-items-center">
@@ -84,16 +86,16 @@
           </div>
         </form>
 
-        <form v-if="formIndex === 2">
+        <form v-if="formIndex === 2" v-on:submit.prevent="submitForgotUserName">
           <h3 class="font-green">Forgot Username ?</h3>
           <p>Enter your e-mail address below to get your username.</p>
           <div class="form-group">
             <input
               type="email"
               class="form-control"
-              id="exampleInputEmail1"
-              aria-describedby="emailHelp"
+              name="email"
               placeholder="Enter email"
+              required
             />
           </div>
           <div class="d-flex justify-content-between">
@@ -181,6 +183,28 @@
 export default {
   name: "default-login",
   data: () => ({ formIndex: 0 }),
+  methods: {
+    submitLogin(e) {
+      const formData = new FormData(e.target);
+      const userName = formData.get("userName");
+      const password = formData.get("password");
+
+      console.log({ userName, password }, "submitLogin");
+    },
+    submitForgotPassword(e) {
+      const formData = new FormData(e.target);
+      const userName = formData.get("userName");
+      const email = formData.get("email");
+
+      console.log({ userName, email }, "submitForgotPassword");
+    },
+    submitForgotUserName(e) {
+      const formData = new FormData(e.target);
+      const email = formData.get("email");
+
+      console.log({ email }, "submitForgotUserName");
+    },
+  },
 };
 </script>
 
