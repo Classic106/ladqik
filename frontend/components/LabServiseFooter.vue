@@ -25,6 +25,9 @@ export default {
   }),
   methods: {
     handleScroll() {
+      if (this.$route.path.includes("contact-us")) {
+        return;
+      }
       this.scrollUpButton = window.scrollY > 200;
     },
     scrollUp() {
