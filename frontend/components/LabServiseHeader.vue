@@ -92,6 +92,28 @@ export default {
         link: "/#",
       },
     ],
+    secondMenu: [
+      {
+        name: "Home",
+        link: "/lab-servises",
+      },
+      {
+        name: "Patient Portal",
+        link: "/lab-servises/default-login",
+      },
+      {
+        name: "Locations",
+        link: "/lab-servises/contact-us",
+      },
+      {
+        name: "Contact",
+        link: "/lab-servises/contact-us",
+      },
+      {
+        name: "Call Now 844.425.2272",
+        link: "/#",
+      },
+    ],
   }),
   methods: {
     handlerResize(e) {
@@ -113,8 +135,20 @@ export default {
         this.isMobileMenuOpen = false;
       }
     },
+    setSecondMenu(path) {
+      const isSecondMenu = path.includes("contact-us");
+      if (isSecondMenu) {
+        this.menu = this.secondMenu;
+      }
+    },
+  },
+  watch: {
+    $route(to, from) {
+      this.setSecondMenu(to.path);
+    },
   },
   mounted() {
+    this.setSecondMenu(this.$route.path);
     this.handlerResize({ target: window });
     window.addEventListener("resize", this.handlerResize);
     document.addEventListener("click", this.closeOutsideMenu);
