@@ -32,7 +32,7 @@
             questions.
           </p>
           <a
-            href="/booking"
+            href="/lab-servises/select-date"
             class="
               link
               text-uppercase
