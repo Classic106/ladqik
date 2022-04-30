@@ -216,7 +216,6 @@ export default {
 }
 
 ul {
-  list-style: none;
   font-size: 10px;
 }
 

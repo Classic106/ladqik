@@ -132,7 +132,7 @@
         <nuxt-link
           no-prefetch
           to="#"
-          class="d-none d-md-flex text-decoration-none"
+          class="d-none d-md-flex"
         >
           <button
             type="button"

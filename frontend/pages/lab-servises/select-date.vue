@@ -1,6 +1,6 @@
 <template>
   <div class="row my-5 align-items-center justify-content-center">
-    <div class="container row p-0 m-0">
+    <div class="container row p-0 m-0" :class="date ? 'max' : ''">
       <div class="left-side col p-0 position-relative">
         <div class="m-5 d-flex justify-content-center">
           <img
@@ -40,15 +40,28 @@
       <div class="col d-flex flex-column align-items-center pt-5">
         <h1 class="text-start w-100 px-3">Select a Date &amp; Time</h1>
         <client-only placeholder="Loading...">
-          <DatePicker
-            :min-date="minDate"
-            :max-date="maxDate"
-            :attributes="attributes"
-            v-model="date"
-            title-position="left"
-            :first-day-of-week="2"
-            class="mt-3 mx-5"
-          />
+          <div class="row d-flex w-100 h-100 justify-content-center mb-5">
+            <div>
+              <DatePicker
+                :min-date="minDate"
+                :max-date="maxDate"
+                :attributes="attributes"
+                v-model="date"
+                title-position="left"
+                :first-day-of-week="2"
+                class="col mt-3 mx-2"
+              />
+              <TimeZones v-on:dateOptions="setDateOptions" />
+            </div>
+            <ChoseTime
+              v-if="date"
+              class="col"
+              :date="date"
+              :isAmPm="isAmPm"
+              :timeZone="timeZone"
+              v-on:setDateTime="setDateTime"
+            />
+          </div>
         </client-only>
       </div>
     </div>
@@ -57,25 +70,21 @@
 
 <script>
 import Icon from "@/components/icons";
+import ChoseTime from "@/components/ChoseTime";
+import TimeZones from "@/components/TimeZones";
 
 export default {
   name: "select-date",
-  components: { Icon },
-  watch: {
-    date() {
-      if (this.attributes.length === 2) {
-        this.attributes.pop();
-      }
-      if (this.date) {
-        this.attributes.push({
-          highlight: {
-            color: "blue",
-            fillMode: "solid",
-          },
-          dates: this.date,
-        });
-      }
+  components: { Icon, ChoseTime, TimeZones },
+  methods: {
+    setDateOptions(data) {
+      const { isAmPm, timeZone } = data;
+      this.isAmPm = isAmPm;
+      this.timeZone = timeZone;
     },
+    setDateTime(date){
+      console.log(date, 'sssss');
+    }
   },
   data: () => {
     const minDate = new Date();
@@ -100,9 +109,12 @@ export default {
     } while (date < maxDate);
 
     return {
+      isAmPm: false,
+      timeZone: "",
       date: null,
       minDate,
       maxDate,
+      step: 0,
       attributes: [
         {
           highlight: {
@@ -144,6 +156,11 @@ h1 {
   border: 1px solid var(--text-color-level3, rgba(26, 26, 26, 0.1));
   border-radius: 8px;
   box-shadow: 0 1px 8px 0 rgb(0 0 0 / 8%);
+}
+
+.container.max {
+  min-width: 900px !important;
+  max-width: 1060px !important;
 }
 
 .left-side::after {

@@ -128,10 +128,6 @@ h6 {
   font-weight: 500;
 }
 
-a {
-  text-decoration: none;
-}
-
 .contact-item:hover > a {
   color: #0038e3;
 }
