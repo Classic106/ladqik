@@ -44,11 +44,23 @@
                 ></span
               >
             </div>
-            <p class="mb-5 pb-5">
+            <p v-if="step === 0" class="mb-5 pb-5">
               We want to learn more about you! This short call gives you time to
               let us know about your needs to see if our product is right for
               you.
             </p>
+            <div v-if="step === 1">
+              <div>
+                <Icon icon="calendar" /><strong class="ml-3">{{
+                  parseDate()
+                }}</strong>
+              </div>
+              <div>
+                <Icon icon="earth-asia" /><strong class="ml-3">{{
+                  timeZone
+                }}</strong>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -59,7 +71,8 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+import { mapMutations, mapGetters } from "vuex";
+import { convert_24h_to_AmPm_as_string } from "@/helpers";
 import Icon from "@/components/icons";
 import FirstStep from "@/components/select-date/FirstStep";
 import SecondStep from "@/components/select-date/SecondStep";
@@ -68,14 +81,37 @@ export default {
   name: "select-date",
   components: { Icon, FirstStep, SecondStep },
   computed: {
-    step() {
-      return this.$store.getters["labServise/getStep"];
-    },
-    date() {
-      return this.$store.getters["labServise/getDate"];
+    ...mapGetters({
+      step: ["labServise/getStep"],
+      date: ["labServise/getDate"],
+      isAmPm: ["labServise/getIsAmPm"],
+      timeZone: ["labServise/getTimeZone"],
+    }),
+  },
+  methods: {
+    ...mapMutations({ stepMinusOne: "labServise/stepMinusOne" }),
+    parseDate() {
+      const chosedDate = new Date(this.date);
+
+      const hours = chosedDate.getHours();
+      const minutes = chosedDate.getMinutes();
+
+      const day = chosedDate.toLocaleString("en-us", { weekday: "long" });
+      const month = chosedDate.toLocaleString("en-us", { month: "long" });
+      const date = chosedDate.getDate();
+      const year = chosedDate.getFullYear();
+
+      const from = convert_24h_to_AmPm_as_string(hours, minutes, this.isAmPm);
+      const hoursTo = minutes + 15 === 60 ? hours + 1 : hours;
+      const minutesTo = minutes + 15 === 60 ? "00" : minutes + 15;
+      let to = convert_24h_to_AmPm_as_string(hoursTo, minutesTo, this.isAmPm);
+
+      if (hours === 23 && minutes === 45) {
+        to = convert_24h_to_AmPm_as_string(24, "00", this.isAmPm);
+      }
+      return `${from}-${to} ${day}, ${month} ${date}, ${year}`;
     },
   },
-  methods: { ...mapMutations({ stepMinusOne: "labServise/stepMinusOne" }) },
 };
 </script>
 
