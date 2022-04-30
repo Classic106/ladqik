@@ -42,7 +42,11 @@ export default {
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
    */
-  plugins: [{ src: "~/plugins/vue-meeting-selector.js", mode: "client" }],
+  plugins: [
+    { src: "~/plugins/vue-meeting-selector.js", mode: "client" },
+    { src: "~/plugins/v-calendar.js", mode: "client" },
+    //{ src: "~/plugins/date-picker.js", ssr: false },
+  ],
   /*
    ** Auto import components
    ** See https://nuxtjs.org/api/configuration-components

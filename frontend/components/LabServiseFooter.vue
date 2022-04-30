@@ -57,7 +57,6 @@ export default {
   width: 34px;
   position: fixed;
   right: 45px;
-  text-decoration: none;
   bottom: 45px;
   z-index: 1029;
   border-radius: 50%;

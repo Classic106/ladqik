@@ -32,7 +32,7 @@
             questions.
           </p>
           <a
-            href="/booking"
+            href="/lab-servises/select-date"
             class="
               link
               text-uppercase
@@ -126,10 +126,6 @@ h6 {
   font-size: 18px;
   line-height: 22px;
   font-weight: 500;
-}
-
-a {
-  text-decoration: none;
 }
 
 .contact-item:hover > a {

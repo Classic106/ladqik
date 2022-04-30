@@ -67,7 +67,7 @@
       <nuxt-link
         no-prefetch
         to="/booking"
-        class="d-none d-md-flex text-decoration-none"
+        class="d-none d-md-flex"
       >
         <button type="button" class="btn yellow-gradient slim p-2 rounded">
           Schedule Appointment

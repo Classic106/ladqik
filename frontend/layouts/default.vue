@@ -36,6 +36,15 @@ hr {
   top: -104px !important;
 }
 
+ul {
+  list-style: none;
+}
+
+a,
+button {
+  text-decoration: none !important;
+}
+
 .w100 {
   width: 100%;
 }
