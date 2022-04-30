@@ -2,6 +2,21 @@
   <div class="row my-5 align-items-center justify-content-center">
     <div class="container row p-0 m-0" :class="date ? 'max' : ''">
       <div class="left-side col p-0 position-relative">
+        <button
+          v-if="step > 0"
+          v-on:click="stepMinusOne"
+          class="
+            back-button
+            d-flex
+            align-items-center
+            justify-content-center
+            position-absolute
+            mt-3
+            ml-3
+          "
+        >
+          <Icon icon="arrow-left" class="md" />
+        </button>
         <div class="m-5 d-flex justify-content-center">
           <img
             src="https://d3v0px0pttie1i.cloudfront.net/uploads/user/logo/11958543/a09fbf74.png"
@@ -38,17 +53,20 @@
         </div>
       </div>
       <FirstStep v-if="step === 0" />
+      <SecondStep v-if="step === 1" />
     </div>
   </div>
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 import Icon from "@/components/icons";
 import FirstStep from "@/components/select-date/FirstStep";
+import SecondStep from "@/components/select-date/SecondStep";
 
 export default {
   name: "select-date",
-  components: { Icon, FirstStep },
+  components: { Icon, FirstStep, SecondStep },
   computed: {
     step() {
       return this.$store.getters["labServise/getStep"];
@@ -57,6 +75,7 @@ export default {
       return this.$store.getters["labServise/getDate"];
     },
   },
+  methods: { ...mapMutations({ stepMinusOne: "labServise/stepMinusOne" }) },
 };
 </script>
 
@@ -67,6 +86,18 @@ h1 {
   font-size: 28px;
   line-height: 32px;
   color: #000;
+}
+
+.back-button {
+  width: 43px;
+  height: 43px;
+  background-clip: padding-box;
+  border: 1px solid rgba(26, 26, 26, 0.1);
+  border-radius: 50%;
+}
+
+.back-button > .icon {
+  fill: rgb(0, 105, 255);
 }
 
 .container {

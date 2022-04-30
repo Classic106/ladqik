@@ -16,6 +16,12 @@ export const mutations = {
   setIsAmPm(state, isAmPm) {
     state.isAmPm = isAmPm;
   },
+  stepMinusOne(state) {
+    if (state.step === 0) {
+      return;
+    }
+    state.step--;
+  },
   setTimeZone(state, timeZone) {
     state.timeZone = timeZone;
   },
