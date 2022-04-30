@@ -31,23 +31,10 @@
 </template>
 
 <script>
+import { mapMutations, mapGetters } from "vuex";
 import { convert_24h_to_AmPm_as_string } from "@/helpers";
 
 export default {
-  props: {
-    date: {
-      type: [Date, null],
-      required: true,
-    },
-    isAmPm: {
-      type: [Boolean, null],
-      required: true,
-    },
-    timeZone: {
-      type: [String, null],
-      required: true,
-    },
-  },
   data: () => ({
     times: [],
     index: null,
@@ -55,26 +42,27 @@ export default {
     currentDate: new Date(),
   }),
   watch: {
-    date() {
-      this.updateTimes();
-    },
     isAmPm() {
       this.updateTimes();
     },
     timeZone() {
       this.updateTimes();
     },
-    currentDate() {
-      this.updateTimes();
-    },
+  },
+  computed: {
+    ...mapGetters({
+      isAmPm: ["labServise/getIsAmPm"],
+      timeZone: ["labServise/getTimeZone"],
+    }),
   },
   methods: {
+    ...mapMutations({ setTimeDate: "labServise/setTimeDate" }),
     setTime() {
       const date = new Date(this.date);
       const time = this.times[this.index].replace(/am|pm/g, "").split(":");
       date.setHours(+time[0]);
       date.setMinutes(+time[1]);
-      this.$emit("setDateTime", date);
+      this.setTimeDate(date);
     },
     dateAsString(withDay) {
       if (this.date) {
@@ -97,6 +85,7 @@ export default {
           timeZone,
         })
       );
+
       const currentHours = currentDate.getHours();
       const currentMinutes = currentDate.getMinutes();
 
