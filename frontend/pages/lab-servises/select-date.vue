@@ -37,94 +37,25 @@
           </div>
         </div>
       </div>
-      <div class="col d-flex flex-column align-items-center pt-5">
-        <h1 class="text-start w-100 px-3">Select a Date &amp; Time</h1>
-        <client-only placeholder="Loading...">
-          <div class="row d-flex w-100 h-100 justify-content-center mb-5">
-            <div>
-              <DatePicker
-                :min-date="minDate"
-                :max-date="maxDate"
-                :attributes="attributes"
-                v-model="date"
-                title-position="left"
-                :first-day-of-week="2"
-                class="col mt-3 mx-2"
-              />
-              <TimeZones v-on:dateOptions="setDateOptions" />
-            </div>
-            <ChoseTime
-              v-if="date"
-              class="col"
-              :date="date"
-              :isAmPm="isAmPm"
-              :timeZone="timeZone"
-              v-on:setDateTime="setDateTime"
-            />
-          </div>
-        </client-only>
-      </div>
+      <FirstStep v-if="step === 0" />
     </div>
   </div>
 </template>
 
 <script>
 import Icon from "@/components/icons";
-import ChoseTime from "@/components/ChoseTime";
-import TimeZones from "@/components/TimeZones";
+import FirstStep from "@/components/select-date/FirstStep";
 
 export default {
   name: "select-date",
-  components: { Icon, ChoseTime, TimeZones },
-  methods: {
-    setDateOptions(data) {
-      const { isAmPm, timeZone } = data;
-      this.isAmPm = isAmPm;
-      this.timeZone = timeZone;
+  components: { Icon, FirstStep },
+  computed: {
+    step() {
+      return this.$store.getters["labServise/getStep"];
     },
-    setDateTime(date){
-      console.log(date, 'sssss');
-    }
-  },
-  data: () => {
-    const minDate = new Date();
-    const maxDate = new Date(
-      minDate.getFullYear(),
-      minDate.getMonth() + 2,
-      minDate.getDate()
-    );
-
-    const dates = [];
-    let date = minDate;
-
-    do {
-      const d = new Date(
-        date.getFullYear(),
-        date.getMonth(),
-        date.getDate() + 1
-      );
-
-      dates.push(d);
-      date = d;
-    } while (date < maxDate);
-
-    return {
-      isAmPm: false,
-      timeZone: "",
-      date: null,
-      minDate,
-      maxDate,
-      step: 0,
-      attributes: [
-        {
-          highlight: {
-            color: "blue",
-            fillMode: "light",
-          },
-          dates: [minDate, ...dates],
-        },
-      ],
-    };
+    date() {
+      return this.$store.getters["labServise/getDate"];
+    },
   },
 };
 </script>
@@ -136,17 +67,6 @@ h1 {
   font-size: 28px;
   line-height: 32px;
   color: #000;
-}
-
-.vd-wrapper {
-  display: flex;
-  box-shadow: none !important;
-  justify-content: center;
-  width: 100%;
-}
-
-.vc-container {
-  border: none;
 }
 
 .container {

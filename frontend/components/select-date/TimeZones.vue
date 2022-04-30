@@ -69,6 +69,7 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 import Icon from "@/components/icons";
 import timeZones from "@/helpers/timeZones";
 import ToggleButton from "@/components/common/ToggleButton";
@@ -79,7 +80,7 @@ export default {
   components: { Icon, ToggleButton },
   watch: {
     isAmPm() {
-      this.$emit("dateOptions", { isAmPm: this.isAmPm, timeZone: this.tz });
+      this.setIsAmPm(this.isAmPm);
       this.time = timeToString(this.tz, this.isAmPm);
     },
     value() {
@@ -89,7 +90,7 @@ export default {
       this.tz = zone.tz;
       this.timeValue = zone.value;
 
-      this.$emit("dateOptions", { isAmPm: this.isAmPm, timeZone: this.tz });
+      this.setTimeZone(this.tz);
       this.time = timeToString(this.tz, this.isAmPm);
     },
     search() {
@@ -130,10 +131,14 @@ export default {
     currentDate: new Date(),
   }),
   created() {
-    this.$emit("dateOptions", { isAmPm: this.isAmPm, timeZone: this.tz });
+    this.isAmPm = this.$store.getters["labServise/getDate"];
     this.time = timeToString(this.tz, this.isAmPm);
   },
   methods: {
+    ...mapMutations({
+      setTimeZone: "labServise/setTimeZone",
+      setIsAmPm: "labServise/setIsAmPm",
+    }),
     timeToString(zone, isAmPm) {
       return timeToString(zone, isAmPm);
     },
@@ -175,6 +180,10 @@ export default {
   mounted() {
     this.startTimer();
     document.addEventListener("click", this.closeSelectOutside);
+  },
+  created() {
+    this.tz = this.$store.getters["labServise/getTimeZone"];
+    this.isAmPm = this.$store.getters["labServise/getIsAmPm"];
   },
   destroyed() {
     this.stopTimer();
