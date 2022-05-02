@@ -48,6 +48,9 @@ export default {
     timeZone() {
       this.updateTimes();
     },
+    date() {
+      this.updateTimes();
+    },
   },
   computed: {
     ...mapGetters({
@@ -91,32 +94,34 @@ export default {
 
       const currentHours = currentDate.getHours();
       const currentMinutes = currentDate.getMinutes();
+      const currentDay = currentDate.getDate();
 
-      if (currentHours <= 16 && currentMinutes <= 59) {
+      const chossedDate = this.date.getDate();
+
+      if (currentDay === chossedDate) {
         const hour = currentHours >= 8 ? currentHours : 8;
-        let index = 0;
+
         for (let h = hour; h <= 16; h++) {
-          if (index === 0) {
-            const quarterHoursIndex = quarterHours.findIndex(
-              (val) => val >= currentMinutes
+          const quarterHoursIndex = quarterHours.findIndex(
+            (val) => val >= currentMinutes
+          );
+          const indx = quarterHoursIndex === -1 ? 0 : quarterHoursIndex;
+          for (let m = indx; m < 4; m++) {
+            times.push(
+              convert_24h_to_AmPm_as_string(h, quarterHours[m], this.isAmPm)
             );
-            const indx = quarterHoursIndex === -1 ? 0 : quarterHoursIndex;
-            for (let m = indx; m < 4; m++) {
-              times.push(
-                convert_24h_to_AmPm_as_string(h, quarterHours[m], this.isAmPm)
-              );
-            }
-            index++;
-            continue;
           }
+        }
+      } else {
+        for (let h = 8; h <= 16; h++) {
           for (let m = 0; m < 4; m++) {
             times.push(
               convert_24h_to_AmPm_as_string(h, quarterHours[m], this.isAmPm)
             );
           }
-          index++;
         }
       }
+
       this.times = times;
     },
     startTimer() {
