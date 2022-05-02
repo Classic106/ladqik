@@ -116,13 +116,6 @@ export default {
 </script>
 
 <style scoped>
-h1 {
-  margin: 0;
-  font-weight: 700;
-  font-size: 28px;
-  line-height: 32px;
-  color: #000;
-}
 
 .back-button {
   width: 43px;

@@ -172,16 +172,6 @@ img {
   width: 100%;
 }
 
-h2 {
-  font-size: 20px !important;
-  line-height: 32px !important;
-}
-
-h1 {
-  font-size: 28px !important;
-  line-height: 32px !important;
-}
-
 button {
   color: #0060e6;
   background-color: rgba(0, 105, 255, 0.065);

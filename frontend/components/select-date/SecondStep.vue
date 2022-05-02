@@ -183,11 +183,6 @@ export default {
 </script>
 
 <style scoped>
-h6 {
-  font-size: 20px !important;
-  color: #000;
-}
-
 .form-container {
   color: #000;
 }
