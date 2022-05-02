@@ -122,12 +122,6 @@ h6 {
   padding-left: 55px;
 }
 
-h6 {
-  font-size: 18px;
-  line-height: 22px;
-  font-weight: 500;
-}
-
 .contact-item:hover > a {
   color: #0038e3;
 }
