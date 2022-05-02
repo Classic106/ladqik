@@ -13,7 +13,7 @@
             :first-day-of-week="2"
             class="col mt-3 mx-2"
           />
-          <TimeZones />
+          <TimeZones class="mt-4"/>
         </div>
         <ChoseTime v-if="date" class="col" />
       </div>
@@ -64,6 +64,11 @@ export default {
       maxDate,
       step: 0,
       attributes: [
+        {
+          key: "today",
+          dot: true,
+          dates: new Date(),
+        },
         {
           highlight: {
             color: "blue",
