@@ -220,6 +220,7 @@ a {
 
 .calendar-list {
   top: 100%;
+  height: max-content;
   z-index: 1;
   background-color: #fff;
 }
