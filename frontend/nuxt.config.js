@@ -45,6 +45,7 @@ export default {
   plugins: [
     { src: "~/plugins/vue-meeting-selector.js", mode: "client" },
     { src: "~/plugins/v-calendar.js", mode: "client" },
+    "~/plugins/tel-input.js",
     //{ src: "~/plugins/date-picker.js", ssr: false },
   ],
   /*

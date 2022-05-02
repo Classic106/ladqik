@@ -53,15 +53,18 @@ export default {
     ...mapGetters({
       isAmPm: ["labServise/getIsAmPm"],
       timeZone: ["labServise/getTimeZone"],
+      date: ["labServise/getDate"],
     }),
   },
   methods: {
     ...mapMutations({ setTimeDate: "labServise/setTimeDate" }),
     setTime() {
       const date = new Date(this.date);
+
       const time = this.times[this.index].replace(/am|pm/g, "").split(":");
       date.setHours(+time[0]);
       date.setMinutes(+time[1]);
+
       this.setTimeDate(date);
     },
     dateAsString(withDay) {

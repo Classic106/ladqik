@@ -2,6 +2,21 @@
   <div class="row my-5 align-items-center justify-content-center">
     <div class="container row p-0 m-0" :class="date ? 'max' : ''">
       <div class="left-side col p-0 position-relative">
+        <button
+          v-if="step > 0"
+          v-on:click="stepMinusOne"
+          class="
+            back-button
+            d-flex
+            align-items-center
+            justify-content-center
+            position-absolute
+            mt-3
+            ml-3
+          "
+        >
+          <Icon icon="arrow-left" class="md" />
+        </button>
         <div class="m-5 d-flex justify-content-center">
           <img
             src="https://d3v0px0pttie1i.cloudfront.net/uploads/user/logo/11958543/a09fbf74.png"
@@ -29,32 +44,72 @@
                 ></span
               >
             </div>
-            <p class="mb-5 pb-5">
+            <p v-if="step === 0" class="mb-5 pb-5">
               We want to learn more about you! This short call gives you time to
               let us know about your needs to see if our product is right for
               you.
             </p>
+            <div v-if="step === 1">
+              <div>
+                <Icon icon="calendar" /><strong class="ml-3">{{
+                  parseDate()
+                }}</strong>
+              </div>
+              <div>
+                <Icon icon="earth-asia" /><strong class="ml-3">{{
+                  timeZone
+                }}</strong>
+              </div>
+            </div>
           </div>
         </div>
       </div>
       <FirstStep v-if="step === 0" />
+      <SecondStep v-if="step === 1" />
     </div>
   </div>
 </template>
 
 <script>
+import { mapMutations, mapGetters } from "vuex";
+import { convert_24h_to_AmPm_as_string } from "@/helpers";
 import Icon from "@/components/icons";
 import FirstStep from "@/components/select-date/FirstStep";
+import SecondStep from "@/components/select-date/SecondStep";
 
 export default {
   name: "select-date",
-  components: { Icon, FirstStep },
+  components: { Icon, FirstStep, SecondStep },
   computed: {
-    step() {
-      return this.$store.getters["labServise/getStep"];
-    },
-    date() {
-      return this.$store.getters["labServise/getDate"];
+    ...mapGetters({
+      step: ["labServise/getStep"],
+      date: ["labServise/getDate"],
+      isAmPm: ["labServise/getIsAmPm"],
+      timeZone: ["labServise/getTimeZone"],
+    }),
+  },
+  methods: {
+    ...mapMutations({ stepMinusOne: "labServise/stepMinusOne" }),
+    parseDate() {
+      const chosedDate = new Date(this.date);
+
+      const hours = chosedDate.getHours();
+      const minutes = chosedDate.getMinutes();
+
+      const day = chosedDate.toLocaleString("en-us", { weekday: "long" });
+      const month = chosedDate.toLocaleString("en-us", { month: "long" });
+      const date = chosedDate.getDate();
+      const year = chosedDate.getFullYear();
+
+      const from = convert_24h_to_AmPm_as_string(hours, minutes, this.isAmPm);
+      const hoursTo = minutes + 15 === 60 ? hours + 1 : hours;
+      const minutesTo = minutes + 15 === 60 ? "00" : minutes + 15;
+      let to = convert_24h_to_AmPm_as_string(hoursTo, minutesTo, this.isAmPm);
+
+      if (hours === 23 && minutes === 45) {
+        to = convert_24h_to_AmPm_as_string(24, "00", this.isAmPm);
+      }
+      return `${from}-${to} ${day}, ${month} ${date}, ${year}`;
     },
   },
 };
@@ -67,6 +122,18 @@ h1 {
   font-size: 28px;
   line-height: 32px;
   color: #000;
+}
+
+.back-button {
+  width: 43px;
+  height: 43px;
+  background-clip: padding-box;
+  border: 1px solid rgba(26, 26, 26, 0.1);
+  border-radius: 50%;
+}
+
+.back-button > .icon {
+  fill: rgb(0, 105, 255);
 }
 
 .container {
