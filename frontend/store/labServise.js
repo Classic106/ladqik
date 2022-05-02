@@ -2,6 +2,7 @@ export const state = () => ({
   step: 0,
   date: null,
   isAmPm: false,
+  phone: null,
   timeZone: "Europe/Sofia",
 });
 
@@ -25,6 +26,9 @@ export const mutations = {
   setTimeZone(state, timeZone) {
     state.timeZone = timeZone;
   },
+  setPhone(state, phone) {
+    state.phone = phone;
+  },
 };
 
 export const getters = {
@@ -39,5 +43,8 @@ export const getters = {
   },
   getTimeZone(state) {
     return state.timeZone;
+  },
+  getPhone(state) {
+    return state.phone;
   },
 };

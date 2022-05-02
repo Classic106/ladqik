@@ -94,19 +94,11 @@ export default {
 </script>
 
 <style scoped>
-h1 {
-  margin: 0;
-  font-weight: 700;
-  font-size: 28px;
-  line-height: 32px;
-  color: #000;
-}
-
 .container {
   max-width: 800px;
   min-height: 550px;
   width: 95%;
-  border: 1px solid var(--text-color-level3, rgba(26, 26, 26, 0.1));
+  border: 1px solid rgba(26, 26, 26, 0.1);
   border-radius: 8px;
   box-shadow: 0 1px 8px 0 rgb(0 0 0 / 8%);
 }
