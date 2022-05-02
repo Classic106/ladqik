@@ -1,7 +1,7 @@
 <template>
   <div class="col d-flex flex-column align-items-center pt-5">
     <h6 class="font-weight-bold">Enter Details</h6>
-    <form v-on:sybmit.prevent="submit" class="form-container">
+    <form v-on:submit.prevent="submit" class="form-container">
       <div class="form-group">
         <label for="name">Name</label>
         <input
@@ -105,6 +105,7 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 import { ItemValidation } from "@/helpers";
 
 export default {
@@ -140,6 +141,7 @@ export default {
     },
   },
   methods: {
+    ...mapMutations({ setPhone: "labServise/setPhone" }),
     vueTelInputProps: (required = true) => ({
       mode: "international",
       validCharactersOnly: true,
@@ -173,6 +175,8 @@ export default {
         data.sendToPhone = this.sendToPhone;
       }
       console.log(data);
+      this.setPhone(this.phone);
+      this.$router.push("/lab-servises/confirmed");
     },
   },
 };

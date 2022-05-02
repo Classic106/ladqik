@@ -34,7 +34,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .position-absolute {
   bottom: 0;
   top: 0;
@@ -146,22 +146,24 @@ a.nav-link {
   font-size: 14px !important;
 }
 
+h1,
+h2,
 h6 {
-  font-size: 1.8rem;
-  line-height: 2.5rem;
+  color: #000;
 }
 
-h5 {
-  font-size: 2.3rem;
-  line-height: 3rem;
-}
-h3 {
-  font-size: 3.4rem;
-  line-height: 3.9rem;
+h6 {
+  font-size: 20px !important;
 }
 
 h2 {
-  font-size: 3.9rem;
+  font-size: 20px !important;
+  line-height: 32px !important;
+}
+
+h1 {
+  font-size: 28px !important;
+  line-height: 32px !important;
 }
 
 .text-gradient-magenta-orange-2 {
