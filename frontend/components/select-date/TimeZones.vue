@@ -5,7 +5,7 @@
       ref="button"
       class="d-flex align-items-center px-2 py-1"
     >
-      <Icon icon="earth-asia" class="mr-3 text-nowrap" />
+      <Icon icon="earth-asia" class="mr-3" />
       {{ timeValue }}
       <span class="ml-2 text-nowrap">{{ `(${time})` }}</span>
       <Icon :icon="isOpen ? 'angle-up' : 'angle-down'" class="ml-3" />
@@ -203,7 +203,8 @@ button {
   border-radius: 13px;
 }
 .zones {
-  bottom: 30px;
+  top: auto;
+  bottom: 100%;
   background: #fff;
   z-index: 1;
   border: 1px solid rgba(0, 0, 0, 0.2);
