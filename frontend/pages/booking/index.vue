@@ -9,7 +9,7 @@
         <div
           v-for="location in locations"
           v-bind:key="location.name"
-          class="mx-auto col-sm d-flex justify-content-center"
+          class="mx-auto col-12 col-md-6 col-lg-3 d-flex justify-content-center"
         >
           <div class="card m-2 flex-fill" style="max-width: 35rem">
             <img

@@ -255,6 +255,11 @@ export default {
   transform: scale(1.1);
 }
 
+h6,
+h2 {
+  color: #fff;
+}
+
 h5 {
   color: #374162;
   letter-spacing: -0.5px;

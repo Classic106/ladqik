@@ -26,7 +26,7 @@
           v-for="item in menu"
           :key="item.link"
           v-on:click.stop="isMobile && toggleActive(item)"
-          class="item-menu d-flex flex-column h-100"
+          class="item-menu d-flex flex-column h-100 position-relative"
         >
           <NuxtLink
             :to="item.link || ''"
@@ -64,11 +64,7 @@
       </ul>
     </div>
     <div class="col d-flex justify-content-end p-0 mr-3">
-      <nuxt-link
-        no-prefetch
-        to="/booking"
-        class="d-none d-md-flex"
-      >
+      <nuxt-link no-prefetch to="/booking" class="d-none d-md-flex">
         <button type="button" class="btn yellow-gradient slim p-2 rounded">
           Schedule Appointment
         </button>
@@ -270,6 +266,15 @@ export default {
   }
 }
 
+ul {
+  height: max-content;
+  width: max-content;
+  left: 0;
+  right: 0;
+  top: 100%;
+  bottom: 0;
+}
+
 .icon {
   fill: #000;
 }
@@ -304,6 +309,7 @@ a {
 .show {
   position: absolute;
   left: 0;
+  top: 0;
   width: 100%;
   background-color: #f8f8f8;
   overflow: hidden;

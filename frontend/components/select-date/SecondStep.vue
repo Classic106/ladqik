@@ -157,9 +157,6 @@ export default {
     deleteGuestEmail(index) {
       this.guestsEmails.splice(index, 1);
     },
-    onSelect({ name, iso2, dialCode }) {
-      console.log(name, iso2, dialCode);
-    },
     submit() {
       const data = {
         name: this.name,
