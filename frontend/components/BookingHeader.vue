@@ -3,7 +3,19 @@
     <div class="col-2">
       <h4 class="logo text-nowrap m-0 p-0">Nobel BioLabs</h4>
     </div>
-    <div class="col-8 col-md-7 w-100 h-100 menu p-0 w-lg-50 position-absolute">
+    <div
+      class="
+        col-8 col-md-7
+        w-100
+        h-100
+        menu
+        p-0
+        w-lg-50
+        d-flex
+        position-absolute
+        justify-content-end
+      "
+    >
       <ul
         class="align-items-center h-100"
         ref="menu"
